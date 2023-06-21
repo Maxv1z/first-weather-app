@@ -101,3 +101,28 @@ main {
   font-weight: 700;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
+
+.sunset-and-sunrise-container {
+  position: relative;
+  display: inline-block;
+  margin: 30px auto;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+
+  padding: 15px 25px;
+
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 700;
+
+  text-shadow: 3px 6px rgba(50, 50, 70, 0.4);
+  text-align: center;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* next size - tablet */
+@media (max-width: 768px) {
+  .app {
+    background-image: url('./assets/phone-screen.jpg');
+  }
+}
