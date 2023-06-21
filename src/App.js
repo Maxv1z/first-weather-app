@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./index.css";
 
+
 const api = {
   key: "dc27e06df1d60ff82983f10702351304",
   base: "https://api.openweathermap.org/data/2.5/",
@@ -55,6 +56,19 @@ function App() {
     return `${day} ${date} ${month} ${year}`;
   };
 
+  function Greeting() {
+    if (typeof weather.main == "undefined") {
+      return (
+        <div className="greeting-container" type>
+          <div className="greeting-text">
+            <p className="typed-text">Hello! Wanna know some forecast? <br />Just enter your location :)</p>
+          </div>
+        </div>
+      );
+    }
+  }
+
+
   return (
     <div
       className={
@@ -76,6 +90,7 @@ function App() {
             onKeyPress={search}
           />
         </div>
+        <Greeting />
         {typeof weather.main != "undefined" ? (
           <div>
             <div className="location-box">
@@ -89,10 +104,12 @@ function App() {
               <div className="weather">{weather.weather[0].description}</div>
               <div className="sunset-and-sunrise-container">
                 <p>
-                  Sunrise: {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}
+                  Sunrise:{" "}
+                  {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}
                 </p>
                 <p>
-                  Sunset: {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
+                  Sunset:{" "}
+                  {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
                 </p>
               </div>
             </div>
