@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./index.css";
 
-
 const api = {
   key: "dc27e06df1d60ff82983f10702351304",
   base: "https://api.openweathermap.org/data/2.5/",
@@ -51,23 +50,27 @@ function App() {
     let day = days[d.getDay()];
     let date = d.getDate();
     let month = months[d.getMonth()];
-    let year = d.getFullYear();
 
-    return `${day} ${date} ${month} ${year}`;
+    return `${day} ${date} ${month}`;
   };
+
+  const currentDate = new Date();
+  const formattedDate = dateBuilder(currentDate);
 
   function Greeting() {
     if (typeof weather.main == "undefined") {
       return (
         <div className="greeting-container" type>
           <div className="greeting-text">
-            <p className="typed-text">Hello! Wanna know some forecast? <br />Just enter your location :)</p>
+            <p className="typed-text">
+              Hello! Wanna know some forecast? <br />
+              Just enter your location :)
+            </p>
           </div>
         </div>
       );
     }
   }
-
 
   return (
     <div
@@ -97,11 +100,29 @@ function App() {
               <div className="location">
                 {weather.name}, {weather.sys.country}
               </div>
-              <div className="date">{dateBuilder(new Date())}</div>
+            </div>
+            <div className="date-container">
+              <div className="date">{formattedDate}</div>
             </div>
             <div className="weather-box">
-              <div className="temp">{Math.round(weather.main.temp)}°c</div>
-              <div className="weather">{weather.weather[0].description}</div>
+              <div className="weather-container">
+                <div className="weather"></div>
+                {weather.weather[0].description.charAt(0).toUpperCase() +
+                  weather.weather[0].description.slice(1)}
+              </div>
+
+              <div className="temp">{Math.round(weather.main.temp)}°</div>
+              <div className="description-container">
+                <h2>Description</h2>
+                <p>
+                  Now it feels like {Math.round(weather.main.feels_like)}°,
+                  actually {Math.round(weather.main.temp)}°. Today the
+                  temperature is felt in the range from{" "}
+                  {Math.round(weather.main.temp_min)}° to{" "}
+                  {Math.round(weather.main.temp_max)}°.
+                </p>
+              </div>
+
               <div className="sunset-and-sunrise-container">
                 <p>
                   Sunrise:{" "}
