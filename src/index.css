@@ -2,18 +2,27 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Ledger';
+  font-family: "Ledger";
 }
 
 body {
-  font-family: 'Ledger';
-  background-color: rgba(254,225,66,255);
+  font-family: "Ledger";
+  background-color: rgba(254, 225, 66, 1);
   padding: 25px;
 }
 
 .search-box {
   width: 100%;
   margin-bottom: 0px;
+}
+
+.svg-icon {
+  filter: invert(97%) sepia(52%) saturate(3089%) hue-rotate(321deg)
+    brightness(107%) contrast(105%);
+  width: 50px;
+  height: 50px;
+  display: block;
+  overflow: clip;
 }
 
 .search-box .search-bar {
@@ -29,7 +38,7 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 0px 0px 16px 16px;
   margin-top: -25px;
-  
+
   color: #313131;
   font-size: 20px;
 
@@ -65,12 +74,11 @@ body {
 }
 
 .date-container .date {
-  color: rgba(254,225,66,255);
+  color: rgba(254, 225, 66, 1);
   font-size: 0.8em;
   font-weight: 200;
   text-align: center;
 }
-
 
 .weather-box {
   text-align: center;
@@ -87,11 +95,37 @@ body {
   font-weight: 900;
 }
 
-
 .weather-box .weather {
   color: black;
   font-size: 1em;
   font-weight: 700;
+}
+
+.weather-info-box {
+  width: 70vw;
+  position: relative;
+  margin: 20px auto;
+
+  background-color: black;
+  border-radius: 16px;
+
+  padding: 3px 10px;
+
+  color: rgba(254, 225, 66, 1);
+  font-size: 1em;
+  font-weight: 500;
+
+  display: flex;
+  justify-content: center;
+}
+
+.weather-info-box .weather-info-text {
+  text-align: initial;
+}
+
+.weather-info-containers {
+  margin: 1em;
+  justify-content: center;
 }
 
 .sunset-and-sunrise-container {
@@ -107,7 +141,7 @@ body {
 
   padding: 15px 25px;
 
-  color: rgba(254,225,66,255);
+  color: rgba(254, 225, 66, 1);
   font-size: 1em;
   font-weight: 500;
 }
@@ -134,7 +168,7 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 16px 16px 16px 16px;
   box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
-  
+
   color: #313131;
   font-size: 20px;
   word-wrap: break-word;

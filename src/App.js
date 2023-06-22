@@ -1,6 +1,10 @@
 import { useState } from "react";
 import "./index.css";
 
+import windIcon from "./assets/wind-icon.svg";
+import dropIcon from "./assets/drop-icon.svg";
+import windSideIcon from "./assets/wind-side.svg";
+
 const api = {
   key: "dc27e06df1d60ff82983f10702351304",
   base: "https://api.openweathermap.org/data/2.5/",
@@ -21,6 +25,20 @@ function App() {
         });
     }
   };
+
+  function toTextualDescription(degree) {
+    if (degree > 337.5) return "Northerly";
+    if (degree > 292.5) return "North Westerly";
+    if (degree > 247.5) return "Westerly";
+    if (degree > 202.5) return "South Westerly";
+    if (degree > 157.5) return "Southerly";
+    if (degree > 122.5) return "South Easterly";
+    if (degree > 67.5) return "Easterly";
+    if (degree > 22.5) {
+      return "North Easterly";
+    }
+    return "Northerly";
+  }
 
   const dateBuilder = (d) => {
     let months = [
@@ -121,6 +139,30 @@ function App() {
                   {Math.round(weather.main.temp_min)}° to{" "}
                   {Math.round(weather.main.temp_max)}°.
                 </p>
+              </div>
+
+              <div className="weather-info-box">
+                <div className="weather-info-containers">
+                  <img src={windIcon} alt="" className="svg-icon" />
+                  <div className="weather-info-text">
+                    <p>{weather.wind.speed}km/h</p>
+                  </div>
+                </div>
+
+                <div className="weather-info-containers">
+                  <img src={dropIcon} alt="" className="svg-icon" />
+                  <div className="weather-info-text">
+                    <p>{weather.main.humidity}%</p>
+                  </div>
+                </div>
+
+                <div className="weather-info-containers">
+                  <img src={windSideIcon} alt="" className="svg-icon" />
+                  <div className="weather-info-text">
+                    <p>{toTextualDescription()}</p>
+                  </div>
+                </div>
+
               </div>
 
               <div className="sunset-and-sunrise-container">
