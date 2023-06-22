@@ -3,11 +3,12 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Ledger";
+
 }
 
 body {
   font-family: "Ledger";
-  background-color: rgba(254, 225, 66, 1);
+  background-color: #ffe142;
   padding: 25px;
 }
 
@@ -74,7 +75,7 @@ body {
 }
 
 .date-container .date {
-  color: rgba(254, 225, 66, 1);
+  color: #ffe142;
   font-size: 0.8em;
   font-weight: 200;
   text-align: center;
@@ -111,7 +112,7 @@ body {
 
   padding: 3px 10px;
 
-  color: rgba(254, 225, 66, 1);
+  color: #ffe142;
   font-size: 1em;
   font-weight: 500;
 
@@ -121,6 +122,10 @@ body {
 
 .weather-info-box .weather-info-text {
   text-align: initial;
+}
+
+.weather-info-box .weather-info-text a{
+  font-size: 0.7em;
 }
 
 .weather-info-containers {
@@ -141,7 +146,7 @@ body {
 
   padding: 15px 25px;
 
-  color: rgba(254, 225, 66, 1);
+  color: #ffe142;
   font-size: 1em;
   font-weight: 500;
 }
@@ -152,6 +157,11 @@ body {
   text-align: left;
   width: 70vw;
   padding-bottom: 10px;
+  font-weight: 700;
+}
+
+.description-container h2 {
+  font-weight: bolder;
 }
 
 .greeting-container {
@@ -172,4 +182,7 @@ body {
   color: #313131;
   font-size: 20px;
   word-wrap: break-word;
+}
+
+@media screen and (min-width: 380px) {
 }

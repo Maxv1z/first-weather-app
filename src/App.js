@@ -5,6 +5,11 @@ import windIcon from "./assets/wind-icon.svg";
 import dropIcon from "./assets/drop-icon.svg";
 import windSideIcon from "./assets/wind-side.svg";
 
+import Description from "./components/description/description.component";
+import Greeting from "./components/greeting/greeting.component";
+import DateContainer from "./components/date/date.component";
+// import WeatherInfo from "./components/weather-info-icons/weather-info.component";
+
 const api = {
   key: "dc27e06df1d60ff82983f10702351304",
   base: "https://api.openweathermap.org/data/2.5/",
@@ -75,21 +80,6 @@ function App() {
   const currentDate = new Date();
   const formattedDate = dateBuilder(currentDate);
 
-  function Greeting() {
-    if (typeof weather.main == "undefined") {
-      return (
-        <div className="greeting-container" type>
-          <div className="greeting-text">
-            <p className="typed-text">
-              Hello! Wanna know some forecast? <br />
-              Just enter your location :)
-            </p>
-          </div>
-        </div>
-      );
-    }
-  }
-
   return (
     <div
       className={
@@ -111,7 +101,7 @@ function App() {
             onKeyPress={search}
           />
         </div>
-        <Greeting />
+        <Greeting weather={weather} />
         {typeof weather.main != "undefined" ? (
           <div>
             <div className="location-box">
@@ -119,33 +109,30 @@ function App() {
                 {weather.name}, {weather.sys.country}
               </div>
             </div>
-            <div className="date-container">
-              <div className="date">{formattedDate}</div>
-            </div>
+            <DateContainer formattedDate={formattedDate} />
             <div className="weather-box">
               <div className="weather-container">
                 <div className="weather"></div>
                 {weather.weather[0].description.charAt(0).toUpperCase() +
                   weather.weather[0].description.slice(1)}
               </div>
-
               <div className="temp">{Math.round(weather.main.temp)}°</div>
-              <div className="description-container">
-                <h2>Description</h2>
-                <p>
-                  Now it feels like {Math.round(weather.main.feels_like)}°,
-                  actually {Math.round(weather.main.temp)}°. Today the
-                  temperature is felt in the range from{" "}
-                  {Math.round(weather.main.temp_min)}° to{" "}
-                  {Math.round(weather.main.temp_max)}°.
-                </p>
-              </div>
 
+              <Description weather={weather} />
+              {/* <WeatherInfo
+                weather={weather}
+                windIcon={windIcon}
+                dropIcon={dropIcon}
+                windSideIcon={windSideIcon}
+              /> */}
               <div className="weather-info-box">
                 <div className="weather-info-containers">
                   <img src={windIcon} alt="" className="svg-icon" />
                   <div className="weather-info-text">
-                    <p>{weather.wind.speed}km/h</p>
+                    <p>
+                      {weather.wind.speed}
+                      <a>km/h</a>
+                    </p>
                   </div>
                 </div>
 
@@ -159,21 +146,9 @@ function App() {
                 <div className="weather-info-containers">
                   <img src={windSideIcon} alt="" className="svg-icon" />
                   <div className="weather-info-text">
-                    <p>{toTextualDescription()}</p>
+                    <p>{toTextualDescription(weather.wind.deg)}</p>
                   </div>
                 </div>
-
-              </div>
-
-              <div className="sunset-and-sunrise-container">
-                <p>
-                  Sunrise:{" "}
-                  {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}
-                </p>
-                <p>
-                  Sunset:{" "}
-                  {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
-                </p>
               </div>
             </div>
           </div>
