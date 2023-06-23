@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, React } from "react";
 import "./index.css";
 
 import windIcon from "./assets/wind-icon.svg";
@@ -8,16 +8,26 @@ import windSideIcon from "./assets/wind-side.svg";
 import Description from "./components/description/description.component";
 import Greeting from "./components/greeting/greeting.component";
 import DateContainer from "./components/date/date.component";
-// import WeatherInfo from "./components/weather-info-icons/weather-info.component";
+// import Weather5Days from "./components/weather5days/weather5days.component";
+
 
 const api = {
   key: "dc27e06df1d60ff82983f10702351304",
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
+const api5 = {
+  key: "8e80e70cb975e37c5a4e7006b03e4a72",
+  base: "https://api.openweathermap.org/data/2.5/",
+};
+
+
 function App() {
   const [query, setQuery] = useState("");
+  const [forecastQuery, setForecastQuery] = useState("");
   const [weather, setWeather] = useState({});
+  const [weatherData, setForecastWeather] = useState({});
+
 
   const search = (evt) => {
     if (evt.key === "Enter") {
@@ -28,8 +38,26 @@ function App() {
           setQuery("");
           console.log(result);
         });
+
+      fetch(`${api5.base}forecast?q=${query}&units=metric&&appid=${api5.key}`)
+        .then((res) => res.json())
+        .then((result) => {
+          setForecastWeather(result.list);
+          setForecastQuery("");
+          console.log(result);
+        });
     }
   };
+
+  const handleInputChange = (evt) => {
+    const value = evt.target.value;
+    setQuery(value);
+    setForecastQuery(value);
+    console.log("Query:", query);
+    console.log("Forecast Query:", forecastQuery);
+  };
+
+
 
   function toTextualDescription(degree) {
     if (degree > 337.5) return "Northerly";
@@ -96,7 +124,7 @@ function App() {
             type="text"
             className="search-bar"
             placeholder="Search..."
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={handleInputChange}
             value={query}
             onKeyPress={search}
           />
@@ -119,12 +147,7 @@ function App() {
               <div className="temp">{Math.round(weather.main.temp)}°</div>
 
               <Description weather={weather} />
-              {/* <WeatherInfo
-                weather={weather}
-                windIcon={windIcon}
-                dropIcon={dropIcon}
-                windSideIcon={windSideIcon}
-              /> */}
+
               <div className="weather-info-box">
                 <div className="weather-info-containers">
                   <img src={windIcon} alt="" className="svg-icon" />
@@ -149,9 +172,30 @@ function App() {
                     <p>{toTextualDescription(weather.wind.deg)}</p>
                   </div>
                 </div>
+
               </div>
             </div>
+            <div>
+              {weatherData && weatherData.length > 0 ? (
+                weatherData.slice(0, 5).map((list, index) => {
+                  const minTemperature = Number(list.main.temp_min - 273.15).toFixed(1);
+                  const maxTemperature = Number(list.main.temp_max - 273.15).toFixed(2);
+                  const weatherIcon = `http://openweathermap.org/img/wn/${list.weather[0].icon}@2x.png`;
+
+                  return (
+                    <div key={index}>
+                      <p>Min: {minTemperature}°</p>
+                      <p>Max: {maxTemperature}°</p>
+                      <img src={weatherIcon} alt="Weather Icon" />
+                    </div>
+                  );
+                })
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
           </div>
+
         ) : (
           ""
         )}
