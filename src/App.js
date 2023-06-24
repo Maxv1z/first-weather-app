@@ -10,7 +10,6 @@ import Greeting from "./components/greeting/greeting.component";
 import DateContainer from "./components/date/date.component";
 // import Weather5Days from "./components/weather5days/weather5days.component";
 
-
 const api = {
   key: "dc27e06df1d60ff82983f10702351304",
   base: "https://api.openweathermap.org/data/2.5/",
@@ -21,13 +20,11 @@ const api5 = {
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
-
 function App() {
   const [query, setQuery] = useState("");
   const [forecastQuery, setForecastQuery] = useState("");
   const [weather, setWeather] = useState({});
   const [weatherData, setForecastWeather] = useState({});
-
 
   const search = (evt) => {
     if (evt.key === "Enter") {
@@ -56,8 +53,6 @@ function App() {
     console.log("Query:", query);
     console.log("Forecast Query:", forecastQuery);
   };
-
-
 
   function toTextualDescription(degree) {
     if (degree > 337.5) return "Northerly";
@@ -108,13 +103,15 @@ function App() {
   const currentDate = new Date();
   const formattedDate = dateBuilder(currentDate);
 
+  var hr = new Date().getHours();
+
   return (
     <div
       className={
         typeof weather.main != "undefined"
-          ? weather.main.temp > 16
-            ? "app warm"
-            : "app"
+          ? hr < 20
+            ? "app"
+            : "app-night"
           : "app"
       }
     >
@@ -172,30 +169,53 @@ function App() {
                     <p>{toTextualDescription(weather.wind.deg)}</p>
                   </div>
                 </div>
-
               </div>
             </div>
-            <div>
+            <div className="hourly-forecast">
+              <h2>Hourly forecast</h2>
+            </div>
+            <ul className="weather-info-5-days">
               {weatherData && weatherData.length > 0 ? (
-                weatherData.slice(0, 5).map((list, index) => {
-                  const minTemperature = Number(list.main.temp_min - 273.15).toFixed(1);
-                  const maxTemperature = Number(list.main.temp_max - 273.15).toFixed(2);
+                weatherData.slice(0, 10).map((list, index) => {
+                  const temp5Days = Number(list.main.temp).toFixed(0);
+                  const date5Days = new Date(list.dt * 1000);
+                  const formattedDate = date5Days.toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                  });
+                  const date = new Date(list.dt_txt);
+                  const options = {
+                    hour: "numeric",
+                    hour12: true,
+                  };
+
+                  const time5Days = date
+                    .toLocaleString("en-US", options)
+                    .replace(":", "").replace(" ", "").toLocaleLowerCase();
                   const weatherIcon = `http://openweathermap.org/img/wn/${list.weather[0].icon}@2x.png`;
 
                   return (
-                    <div key={index}>
-                      <p>Min: {minTemperature}°</p>
-                      <p>Max: {maxTemperature}°</p>
-                      <img src={weatherIcon} alt="Weather Icon" />
-                    </div>
+                    <>
+                      <li className="day-block">
+                        <div key={index}>
+                          <div className="temp-5-days">
+                            <p>{temp5Days}°</p>
+                          </div>
+                          <img src={weatherIcon} alt="Weather Icon" />
+                          <div className="date-5-days">
+                            <p>{formattedDate}</p>
+                            <p className="time-5-days">{time5Days}</p>
+                          </div>
+                        </div>
+                      </li>
+                    </>
                   );
                 })
               ) : (
                 <p>Loading...</p>
               )}
-            </div>
+            </ul>
           </div>
-
         ) : (
           ""
         )}
