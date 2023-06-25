@@ -1,3 +1,8 @@
+body {
+  --day-load--delay: 300ms;
+}
+
+
 .hourly-forecast {
   width: 70vw;
   position: relative;
@@ -16,6 +21,8 @@
   margin: auto;
   overflow-x: auto; /* Enable horizontal scrolling */
   white-space: nowrap;
+
+  animation: fadeIn 0.5s ease-in-out forwards;
 }
 
 .day-block {
@@ -35,6 +42,11 @@
   padding: 0;
   font-weight: 600;
   font-family: 'DM Sans';
+
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-fill-mode: forwards;
+  transform: translateY(-20px);
+  opacity: 0;
 }
 
 .weather-info-5-days  {
@@ -62,3 +74,20 @@
 .time-5-days {
   margin-top: 0px;
 }
+
+
+.slide-in {
+  animation: slideIn 0.5s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

@@ -1,14 +1,27 @@
-import React from "react";
+import { React, useEffect, useRef } from "react";
 
 import "./weather5days.style.css";
 
 const WeatherInfo5Days = ({ weatherData }) => {
+  const weatherInfoRef = useRef(null);
+
+  useEffect(() => {
+    if (weatherInfoRef.current) {
+      const dayBlocks = weatherInfoRef.current.querySelectorAll(".day-block");
+      dayBlocks.forEach((block, index) => {
+        const delay = index * 0.2; // Adjust the delay value as needed
+        block.style.animationDelay = `${delay}s`;
+        block.classList.add("slide-in");
+      });
+    }
+  }, [weatherData]);
+
   return (
     <>
       <div className="hourly-forecast">
         <h2>Hourly forecast</h2>
       </div>
-      <ul className="weather-info-5-days">
+      <ul className="weather-info-5-days" ref={weatherInfoRef}>
         {weatherData && weatherData.length > 0 ? (
           weatherData.slice(0, 10).map((list, index) => {
             const temp5Days = Number(list.main.temp).toFixed(0);
