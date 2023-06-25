@@ -31,35 +31,39 @@ function App() {
     const storedCity = localStorage.getItem('city');
     if (storedCity) {
       setCity(storedCity);
+      setQuery(storedCity);
+      fetchWeatherData(storedCity);
     }
   }, []);
 
   const search = (evt) => {
     if (evt.key === "Enter") {
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-        .then((res) => res.json())
-        .then((result) => {
-          setWeather(result);
-          setQuery("");
-          console.log(result);
-        });
-
-      fetch(`${api5.base}forecast?q=${query}&units=metric&&appid=${api5.key}`)
-        .then((res) => res.json())
-        .then((result) => {
-          setForecastWeather(result.list);
-          setForecastQuery("");
-          console.log(result);
-        });
+      fetchWeatherData(query);
     }
+  };
+
+  const fetchWeatherData = (cityName) => {
+    fetch(`${api.base}weather?q=${cityName}&units=metric&APPID=${api.key}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setWeather(result);
+        setQuery("");
+        console.log(result);
+      });
+
+    fetch(`${api5.base}forecast?q=${cityName}&units=metric&&appid=${api5.key}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setForecastWeather(result.list);
+        setForecastQuery("");
+        console.log(result);
+      });
   };
 
   const handleInputChange = (evt) => {
     const value = evt.target.value;
     setQuery(value);
-    setForecastQuery(value);
-    const value2 = evt.target.value;
-    setCity(value2);
+    setCity(value);
     localStorage.setItem('city', value.toString());
   };
 
@@ -129,7 +133,7 @@ function App() {
           <input
             type="text"
             className="search-bar"
-            placeholder="Search..."
+            placeholder="Enter your city"
             onChange={handleInputChange}
             value={query}
             onKeyPress={search}
