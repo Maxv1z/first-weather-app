@@ -2,8 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Ledger";
-
 }
 body {
   font-family: "Ledger";
@@ -31,6 +29,7 @@ body {
   transition: 0.4s ease;
 }
 
+
 .location-box {
   margin-bottom: 3em;
 }
@@ -57,7 +56,7 @@ body {
   font-weight: 900;
 }
 
-.weather-box .weather {
+.weather-container{
   color: black;
   font-size: 1em;
   font-weight: 700;

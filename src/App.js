@@ -143,9 +143,9 @@ function App() {
             <DateContainer formattedDate={formattedDate} />
             <div className="weather-box">
               <div className="weather-container">
-                <div className="weather"></div>
-                {weather.weather[0].description.charAt(0).toUpperCase() +
-                  weather.weather[0].description.slice(1)}
+                <div ></div>
+                <p className="weather">{weather.weather[0].description.charAt(0).toUpperCase() +
+                  weather.weather[0].description.slice(1)}</p>
               </div>
               <div className="temp">{Math.round(weather.main.temp)}°</div>
 
