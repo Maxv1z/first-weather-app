@@ -25,6 +25,14 @@ function App() {
   const [forecastQuery, setForecastQuery] = useState("");
   const [weather, setWeather] = useState({});
   const [weatherData, setForecastWeather] = useState({});
+  const [city, setCity] = useState('');
+
+  useEffect(() => {
+    const storedCity = localStorage.getItem('city');
+    if (storedCity) {
+      setCity(storedCity);
+    }
+  }, []);
 
   const search = (evt) => {
     if (evt.key === "Enter") {
@@ -50,8 +58,9 @@ function App() {
     const value = evt.target.value;
     setQuery(value);
     setForecastQuery(value);
-    console.log("Query:", query);
-    console.log("Forecast Query:", forecastQuery);
+    const value2 = evt.target.value;
+    setCity(value2);
+    localStorage.setItem('city', value.toString());
   };
 
   function toTextualDescription(degree) {
