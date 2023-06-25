@@ -1,3 +1,5 @@
+import "./date.style.css";
+
 const DateContainer = ({ formattedDate }) => {
   return (
     <div className="date-container">

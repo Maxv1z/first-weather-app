@@ -1,3 +1,5 @@
+import "./greeting.style.css";
+
 const Greeting = ({ weather }) => {
   if (typeof weather.main == "undefined") {
     return (

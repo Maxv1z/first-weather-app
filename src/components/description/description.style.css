@@ -1,0 +1,12 @@
+.description-container {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+  width: 70vw;
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+.description-container h2 {
+  font-weight: bolder;
+}

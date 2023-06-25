@@ -5,25 +5,10 @@
   font-family: "Ledger";
 
 }
-
 body {
   font-family: "Ledger";
   background-color: #ffe142;
   padding: 25px;
-}
-
-.search-box {
-  width: 100%;
-  margin-bottom: 0px;
-}
-
-.svg-icon {
-  filter: invert(97%) sepia(52%) saturate(3089%) hue-rotate(321deg)
-    brightness(107%) contrast(105%);
-  width: 50px;
-  height: 50px;
-  display: block;
-  overflow: clip;
 }
 
 .search-box .search-bar {
@@ -46,10 +31,6 @@ body {
   transition: 0.4s ease;
 }
 
-.search-box .search-bar:focus {
-  background-color: rgba(255, 255, 255, 0.75);
-}
-
 .location-box {
   margin-bottom: 3em;
 }
@@ -58,26 +39,6 @@ body {
   color: black;
   font-size: 2em;
   font-weight: 900;
-  text-align: center;
-}
-
-.date-container {
-  width: 40vw;
-  position: relative;
-  margin: 1px auto;
-
-  text-align: center;
-
-  background-color: black;
-  border-radius: 25px;
-
-  padding: 10px 10px;
-}
-
-.date-container .date {
-  color: #ffe142;
-  font-size: 0.8em;
-  font-weight: 200;
   text-align: center;
 }
 
@@ -102,36 +63,6 @@ body {
   font-weight: 700;
 }
 
-.weather-info-box {
-  width: 70vw;
-  position: relative;
-  margin: 20px auto;
-
-  background-color: black;
-  border-radius: 16px;
-
-  padding: 3px 10px;
-
-  color: #ffe142;
-  font-size: 1em;
-  font-weight: 500;
-
-  display: flex;
-  justify-content: center;
-}
-
-.weather-info-box .weather-info-text {
-  text-align: initial;
-}
-
-.weather-info-box .weather-info-text a{
-  font-size: 0.7em;
-}
-
-.weather-info-containers {
-  margin: 1em;
-  justify-content: center;
-}
 
 .sunset-and-sunrise-container {
   width: 70vw;
@@ -151,90 +82,6 @@ body {
   font-weight: 500;
 }
 
-.description-container {
-  position: relative;
-  display: inline-block;
-  text-align: left;
-  width: 70vw;
-  padding-bottom: 10px;
-  font-weight: 700;
-}
-
-.description-container h2 {
-  font-weight: bolder;
-}
-
-
-.hourly-forecast {
-  width: 70vw;
-  position: relative;
-  margin: 30px auto 5px auto;
-}
-
-.hourly-forecast p{
-  text-align: left;
-}
-
-.weather-info-5-days {
-  list-style-type: none;
-  text-align: center;
-  width: 70vw;
-  position: relative;
-  margin: auto;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  white-space: nowrap;
-}
-
-.day-block {
-  display: inline-block;
-  width: 4em;
-  padding: 20px;
-  border: 1px solid black;
-  background-color: #ffe142;
-  color: black;
-  position: relative;
-  margin: 5px;
-  border-radius: 10px;
-  font-size: 1em;
-  font-weight: 500;
-  text-align: center;
-  padding: 0;
-}
-
-.day-block img {
-  width: 3em;
-  height: 3em;
-}
-
-.day-block p {
-  margin-top: 10px;
-}
-
-.time-5-days {
-  padding: 7px;
-}
-
-
-
-.greeting-container {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  height: fit-content;
-
-  appearance: none;
-  background: none;
-  border: none;
-  outline: none;
-
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 16px 16px 16px 16px;
-  box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
-
-  color: #313131;
-  font-size: 20px;
-  word-wrap: break-word;
-}
 
 @media screen and (min-width: 380px) {
 }

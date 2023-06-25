@@ -1,3 +1,5 @@
+import "./description.style.css";
+
 const Description = ({ weather }) => {
   return (
     <div className="description-container">

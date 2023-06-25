@@ -6,9 +6,11 @@ import dropIcon from "./assets/drop-icon.svg";
 import windSideIcon from "./assets/wind-side.svg";
 
 import Description from "./components/description/description.component";
+import SearchBox from "./components/search-box/search-box.compoent.jsx";
 import Greeting from "./components/greeting/greeting.component";
 import DateContainer from "./components/date/date.component";
-// import Weather5Days from "./components/weather5days/weather5days.component";
+import Weather5Days from "./components/weather5days/weather5days.component";
+import WeatherInfoBox from "./components/weather-info-box/weatherInfobox.component.jsx";
 
 const api = {
   key: "dc27e06df1d60ff82983f10702351304",
@@ -25,10 +27,10 @@ function App() {
   const [forecastQuery, setForecastQuery] = useState("");
   const [weather, setWeather] = useState({});
   const [weatherData, setForecastWeather] = useState({});
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState("");
 
   useEffect(() => {
-    const storedCity = localStorage.getItem('city');
+    const storedCity = localStorage.getItem("city");
     if (storedCity) {
       setCity(storedCity);
       setQuery(storedCity);
@@ -64,7 +66,7 @@ function App() {
     const value = evt.target.value;
     setQuery(value);
     setCity(value);
-    localStorage.setItem('city', value.toString());
+    localStorage.setItem("city", value.toString());
   };
 
   function toTextualDescription(degree) {
@@ -129,19 +131,10 @@ function App() {
       }
     >
       <main>
-        <div className="search-box">
-          <input
-            type="text"
-            className="search-bar"
-            placeholder="Enter your city"
-            onChange={handleInputChange}
-            value={query}
-            onKeyPress={search}
-          />
-        </div>
+        <SearchBox handleInputChange={handleInputChange} query={query} search={search} />
         <Greeting weather={weather} />
         {typeof weather.main != "undefined" ? (
-          <div>
+          <>
             <div className="location-box">
               <div className="location">
                 {weather.name}, {weather.sys.country}
@@ -157,78 +150,15 @@ function App() {
               <div className="temp">{Math.round(weather.main.temp)}°</div>
 
               <Description weather={weather} />
-
-              <div className="weather-info-box">
-                <div className="weather-info-containers">
-                  <img src={windIcon} alt="" className="svg-icon" />
-                  <div className="weather-info-text">
-                    <p>
-                      {weather.wind.speed}
-                      <a>km/h</a>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="weather-info-containers">
-                  <img src={dropIcon} alt="" className="svg-icon" />
-                  <div className="weather-info-text">
-                    <p>{weather.main.humidity}%</p>
-                  </div>
-                </div>
-
-                <div className="weather-info-containers">
-                  <img src={windSideIcon} alt="" className="svg-icon" />
-                  <div className="weather-info-text">
-                    <p>{toTextualDescription(weather.wind.deg)}</p>
-                  </div>
-                </div>
-              </div>
+              <WeatherInfoBox
+                weather={weather}
+                windIcon={windIcon}
+                dropIcon={dropIcon}
+                windSideIcon={windSideIcon}
+              />
             </div>
-            <div className="hourly-forecast">
-              <h2>Hourly forecast</h2>
-            </div>
-            <ul className="weather-info-5-days">
-              {weatherData && weatherData.length > 0 ? (
-                weatherData.slice(0, 10).map((list, index) => {
-                  const temp5Days = Number(list.main.temp).toFixed(0);
-                  const date5Days = new Date(list.dt * 1000);
-                  const formattedDate = date5Days.toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  });
-                  const date = new Date(list.dt_txt);
-                  const options = {
-                    hour: "numeric",
-                    hour12: true,
-                  };
-
-                  const time5Days = date
-                    .toLocaleString("en-US", options)
-                    .replace(":", "").replace(" ", "").toLocaleLowerCase();
-                  const weatherIcon = `http://openweathermap.org/img/wn/${list.weather[0].icon}@2x.png`;
-
-                  return (
-                    <>
-                      <li className="day-block">
-                        <div key={index}>
-                          <div className="temp-5-days">
-                            <p>{temp5Days}°</p>
-                          </div>
-                          <img src={weatherIcon} alt="Weather Icon" />
-                          <div className="date-5-days">
-                            <p>{formattedDate}</p>
-                            <p className="time-5-days">{time5Days}</p>
-                          </div>
-                        </div>
-                      </li>
-                    </>
-                  );
-                })
-              ) : (
-                <p>Loading...</p>
-              )}
-            </ul>
-          </div>
+            <Weather5Days weatherData={weatherData} />
+          </>
         ) : (
           ""
         )}
