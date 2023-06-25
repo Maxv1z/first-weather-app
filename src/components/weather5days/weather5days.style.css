@@ -41,6 +41,10 @@
   font-weight: 700;
 }
 
+.temp-5-days {
+  font-family: 'Ledger';
+  font-size: 0.9em;
+}
 
 .day-block img {
   width: 3em;
@@ -51,6 +55,10 @@
   margin-top: 4px;
 }
 
+.date-5-days {
+  margin-bottom: 0px;
+}
+
 .time-5-days {
-  padding: 1px;
+  margin-top: 0px;
 }

@@ -37,8 +37,8 @@ const WeatherInfo5Days = ({ weatherData }) => {
                     <p>{temp5Days}°</p>
                   </div>
                   <img src={weatherIcon} alt="Weather Icon" />
-                  <div className="date-5-days">
-                    <p>{formattedDate}</p>
+                  <div>
+                    <p className="date-5-days">{formattedDate}</p>
                     <p className="time-5-days">{time5Days}</p>
                   </div>
                 </div>
