@@ -1,16 +1,14 @@
-body {
-  --day-load--delay: 300ms;
-}
-
-
 .hourly-forecast {
   width: 70vw;
   position: relative;
   margin: 30px auto 5px auto;
 }
 
-.hourly-forecast p {
+.hourly-forecast h2 {
   text-align: left;
+  opacity: 0;
+  animation: hourly-forecast-load 0.7s ease-in-out forwards;
+  animation-delay: 1.1s;
 }
 
 .weather-info-5-days {
@@ -81,6 +79,17 @@ body {
 }
 
 @keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hourly-forecast-load {
   0% {
     opacity: 0;
     transform: translateY(20px);

@@ -7,12 +7,14 @@ const WeatherInfo5Days = ({ weatherData }) => {
 
   useEffect(() => {
     if (weatherInfoRef.current) {
-      const dayBlocks = weatherInfoRef.current.querySelectorAll(".day-block");
-      dayBlocks.forEach((block, index) => {
-        const delay = index * 0.2; // Adjust the delay value as needed
-        block.style.animationDelay = `${delay}s`;
-        block.classList.add("slide-in");
-      });
+      setTimeout(() => {
+        const dayBlocks = weatherInfoRef.current.querySelectorAll(".day-block");
+        dayBlocks.forEach((block, index) => {
+          const delay = index * 0.2; // Adjust the delay value as needed
+          block.style.animationDelay = `${delay}s`;
+          block.classList.add("slide-in");
+        });
+      }, 1500); // Delay of 2000 milliseconds (2 seconds)
     }
   }, [weatherData]);
 

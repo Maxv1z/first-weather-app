@@ -8,5 +8,38 @@
 }
 
 .description-container h2 {
+  opacity: 0;
   font-weight: bolder;
+  animation: description-h-load 0.7s ease-in-out forwards;
+  animation-delay: 300ms;
+}
+
+.description-container p {
+  opacity: 0;
+  animation: description-p-load 0.7s ease-out forwards;
+  animation-delay: 700ms;
+}
+
+@keyframes description-p-load {
+  0% {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes description-h-load {
+  0% {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

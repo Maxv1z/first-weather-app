@@ -15,6 +15,10 @@
   display: flex;
   justify-content: center;
   font-family: 'DM Sans';
+
+  opacity: 0;
+  animation: weather-info-box-load 0.9s ease-out forwards;
+  animation-delay: 900ms;
 }
 
 .weather-info-box .weather-info-text {
@@ -41,4 +45,17 @@
   height: 50px;
   display: block;
   overflow: clip;
+}
+
+
+@keyframes weather-info-box-load {
+  0% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
