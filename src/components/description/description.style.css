@@ -8,16 +8,20 @@
 }
 
 .description-container h2 {
-  opacity: 0;
   font-weight: bolder;
+
+  opacity: 0;
   animation: description-h-load 0.7s ease-in-out forwards;
-  animation-delay: 300ms;
+  animation-delay: var(--description-delay);
 }
 
 .description-container p {
+  font-family: 'DM Sans';
+  font-weight: 700;
+
   opacity: 0;
   animation: description-p-load 0.7s ease-out forwards;
-  animation-delay: 700ms;
+  animation-delay: var(--description-delay);
 }
 
 @keyframes description-p-load {

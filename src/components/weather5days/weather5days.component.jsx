@@ -2,7 +2,7 @@ import { React, useEffect, useRef } from "react";
 
 import "./weather5days.style.css";
 
-const WeatherInfo5Days = ({ weatherData }) => {
+const WeatherInfo5Days = ({ weatherData, rightArrow }) => {
   const weatherInfoRef = useRef(null);
 
   useEffect(() => {
@@ -14,14 +14,15 @@ const WeatherInfo5Days = ({ weatherData }) => {
           block.style.animationDelay = `${delay}s`;
           block.classList.add("slide-in");
         });
-      }, 1500); // Delay of 2000 milliseconds (2 seconds)
+      }, 5000); // Delay of 2000 milliseconds (2 seconds)
     }
   }, [weatherData]);
 
   return (
     <>
       <div className="hourly-forecast">
-        <h2>Hourly forecast</h2>
+        <h2>Hourly forecast </h2>
+        <img src={rightArrow} className="right-arrow" alt="img" />
       </div>
       <ul className="weather-info-5-days" ref={weatherInfoRef}>
         {weatherData && weatherData.length > 0 ? (

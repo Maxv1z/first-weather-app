@@ -18,7 +18,7 @@
 
   opacity: 0;
   animation: weather-info-box-load 0.9s ease-out forwards;
-  animation-delay: 900ms;
+  animation-delay: var(--weather-info-box-delay);
 }
 
 .weather-info-box .weather-info-text {

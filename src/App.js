@@ -1,16 +1,21 @@
 import { useState, useEffect, React } from "react";
+import ReactDOM from "react-dom";
 import "./index.css";
 
 import windIcon from "./assets/wind-icon.svg";
 import dropIcon from "./assets/drop-icon.svg";
 import windSideIcon from "./assets/wind-side.svg";
+import rightArrow from "./assets/right-arrow.svg";
 
+import Popup from "./components/popup/popup.component";
 import Description from "./components/description/description.component";
 import SearchBox from "./components/search-box/search-box.compoent.jsx";
 import Greeting from "./components/greeting/greeting.component";
 import DateContainer from "./components/date/date.component";
 import Weather5Days from "./components/weather5days/weather5days.component";
 import WeatherInfoBox from "./components/weather-info-box/weatherInfobox.component.jsx";
+import { isVisible } from "@testing-library/user-event/dist/utils";
+import { render } from "@testing-library/react";
 
 const api = {
   key: "dc27e06df1d60ff82983f10702351304",
@@ -29,12 +34,16 @@ function App() {
   const [weatherData, setForecastWeather] = useState({});
   const [city, setCity] = useState("");
 
+  const [showPopup, setShowPopup] = useState(false);
+
   useEffect(() => {
     const storedCity = localStorage.getItem("city");
     if (storedCity) {
       setCity(storedCity);
       setQuery(storedCity);
       fetchWeatherData(storedCity);
+      // Render the popup component
+      setShowPopup(true);
     }
   }, []);
 
@@ -130,8 +139,15 @@ function App() {
           : "app"
       }
     >
+      <div>
+        {showPopup && <Popup />}
+      </div>
       <main>
-        <SearchBox handleInputChange={handleInputChange} query={query} search={search} />
+        <SearchBox
+          handleInputChange={handleInputChange}
+          query={query}
+          search={search}
+        />
         <Greeting weather={weather} />
         {typeof weather.main != "undefined" ? (
           <>
@@ -143,9 +159,11 @@ function App() {
             <DateContainer formattedDate={formattedDate} />
             <div className="weather-box">
               <div className="weather-container">
-                <div ></div>
-                <p className="weather">{weather.weather[0].description.charAt(0).toUpperCase() +
-                  weather.weather[0].description.slice(1)}</p>
+                <div></div>
+                <p className="weather">
+                  {weather.weather[0].description.charAt(0).toUpperCase() +
+                    weather.weather[0].description.slice(1)}
+                </p>
               </div>
               <div className="temp">{Math.round(weather.main.temp)}°</div>
 
@@ -157,7 +175,7 @@ function App() {
                 windSideIcon={windSideIcon}
               />
             </div>
-            <Weather5Days weatherData={weatherData} />
+            <Weather5Days weatherData={weatherData} rightArrow={rightArrow} />
           </>
         ) : (
           ""
