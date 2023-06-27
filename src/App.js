@@ -1,7 +1,7 @@
 import { useState, useEffect, React } from "react";
 
 import "./index.scss";
-import './theme.scss'
+import "./theme.scss";
 
 import windIcon from "./assets/wind-icon.svg";
 import dropIcon from "./assets/drop-icon.svg";
@@ -48,13 +48,12 @@ function App() {
     }
   }, []);
 
-  const [theme, setTheme] = useState('default-class');
+  const [theme, setTheme] = useState("default-class");
   const [isYellow, setYellow] = useState(true);
 
   const toggleTheme = () => {
     setYellow(!isYellow);
   };
-
 
   const search = (evt) => {
     if (evt.key === "Enter") {
@@ -139,10 +138,13 @@ function App() {
   var hr = new Date().getHours();
 
   return (
-    <div className={typeof weather.main !== "undefined" ? isYellow ? 'dark' : 'light' : ''} id="app">
-      <div>
-        {showPopup && <Popup />}
-      </div>
+    <div
+      className={
+        typeof weather.main !== "undefined" ? (isYellow ? "dark" : "light") : ""
+      }
+      id="app"
+    >
+      <div>{showPopup && <Popup />}</div>
       <SearchBox
         handleInputChange={handleInputChange}
         query={query}
@@ -176,11 +178,11 @@ function App() {
             />
           </div>
           <Weather5Days weatherData={weatherData} rightArrow={rightArrow} />
+          <button onClick={toggleTheme} className="theme-button">Change theme?</button>
         </>
       ) : (
         ""
       )}
-      <button onClick={toggleTheme}>Toggle Theme</button>
     </div>
   );
 }

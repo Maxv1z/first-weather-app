@@ -59,6 +59,20 @@ body {
   transition: 0.4s ease;
 }
 
+.theme-button {
+  border-radius: 15%;
+  height: 3rem;
+  width: 5rem;
+
+  transition: all 0.25s;
+  font-family: "Ledger";
+
+  background-color: var(--background-color);
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 .location-box {
   margin-bottom: 3em;
 
