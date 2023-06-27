@@ -1,4 +1,4 @@
-import "./date.style.css";
+import "./date.style.scss";
 
 const DateContainer = ({ formattedDate }) => {
   return (

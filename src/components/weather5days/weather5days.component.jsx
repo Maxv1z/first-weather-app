@@ -1,6 +1,6 @@
 import { React, useEffect, useRef } from "react";
 
-import "./weather5days.style.css";
+import "./weather5days.style.scss";
 
 const WeatherInfo5Days = ({ weatherData, rightArrow }) => {
   const weatherInfoRef = useRef(null);

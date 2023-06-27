@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./search-box.style.css";
+import "./search-box.style.scss";
 
 const SearchBox = ({ handleInputChange, query, search }) => {
   return (
@@ -8,7 +8,7 @@ const SearchBox = ({ handleInputChange, query, search }) => {
       <input
         type="text"
         className="search-bar"
-        placeholder="Enter your city"
+        placeholder="City, country"
         onChange={handleInputChange}
         value={query}
         onKeyPress={search}

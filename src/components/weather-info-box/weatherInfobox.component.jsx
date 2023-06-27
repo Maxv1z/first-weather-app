@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./weatherInfoBox.style.css";
+import "./weatherInfoBox.style.scss";
 
 const WeatherInfoBox = ({ weather, windIcon, dropIcon, windSideIcon }) => {
   const toTextualDescription = (degree) => {
@@ -20,7 +20,7 @@ const WeatherInfoBox = ({ weather, windIcon, dropIcon, windSideIcon }) => {
   return (
     <div className="weather-info-box">
       <div className="weather-info-containers">
-        <img src={windIcon} alt="" className="svg-icon" />
+        <img src={windIcon} alt="" className="svg-icon " />
         <div className="weather-info-text">
           <p>
             {weather.wind.speed}

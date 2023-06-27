@@ -3,30 +3,30 @@
   position: relative;
   margin: 20px auto;
 
-  background-color: #070913;
+  background-color: var(--text-color);
   border-radius: 16px;
 
   padding: 3px 10px;
 
-  color: #ffe142;
+  color: var(--background-color);
   font-size: 1em;
   font-weight: 500;
 
   display: flex;
   justify-content: center;
-  font-family: 'DM Sans';
+  font-family: "DM Sans";
 
   opacity: 0;
   animation: weather-info-box-load 0.9s ease-out forwards;
   animation-delay: var(--weather-info-box-delay);
-}
 
-.weather-info-box .weather-info-text {
-  text-align: initial;
-}
+  .weather-info-text {
+    text-align: initial;
+  }
 
-.weather-info-box .weather-info-text a {
-  font-size: 0.7em;
+  .weather-info-text a {
+    font-size: 0.7em;
+  }
 }
 
 .weather-info-containers {
@@ -40,13 +40,12 @@
 
 .svg-icon {
   filter: invert(97%) sepia(52%) saturate(3089%) hue-rotate(321deg)
-  brightness(107%) contrast(105%);
+    brightness(107%) contrast(105%);
   width: 50px;
   height: 50px;
   display: block;
-  overflow: clip;
+  overflow: hidden;
 }
-
 
 @keyframes weather-info-box-load {
   0% {

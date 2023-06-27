@@ -1,4 +1,4 @@
-import "./greeting.style.css";
+import "./greeting.style.scss";
 
 const Greeting = ({ weather }) => {
   if (typeof weather.main == "undefined") {

@@ -1,4 +1,4 @@
-import "./description.style.css";
+import "./description.style.scss";
 
 const Description = ({ weather }) => {
   return (

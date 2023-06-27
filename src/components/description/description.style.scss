@@ -5,23 +5,25 @@
   width: 70vw;
   padding-bottom: 10px;
   font-weight: 700;
-}
 
-.description-container h2 {
-  font-weight: bolder;
+  color: var(--text-color);
 
-  opacity: 0;
-  animation: description-h-load 0.7s ease-in-out forwards;
-  animation-delay: var(--description-delay);
-}
+  h2 {
+    font-weight: bolder;
 
-.description-container p {
-  font-family: 'DM Sans';
-  font-weight: 700;
+    opacity: 0;
+    animation: description-h-load 0.7s ease-in-out forwards;
+    animation-delay: var(--description-delay);
+  }
 
-  opacity: 0;
-  animation: description-p-load 0.7s ease-out forwards;
-  animation-delay: var(--description-delay);
+  p {
+    font-family: "DM Sans";
+    font-weight: 700;
+
+    opacity: 0;
+    animation: description-p-load 0.7s ease-out forwards;
+    animation-delay: var(--description-delay);
+  }
 }
 
 @keyframes description-p-load {
@@ -41,7 +43,7 @@
     transform: translateX(-40px);
     opacity: 0;
   }
-  
+
   100% {
     transform: translateX(0);
     opacity: 1;
