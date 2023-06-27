@@ -2,6 +2,8 @@ import { React, useEffect, useRef } from "react";
 
 import "./weather5days.style.scss";
 
+import "./weather-icons.css";
+
 const WeatherInfo5Days = ({ weatherData, rightArrow }) => {
   const weatherInfoRef = useRef(null);
 
@@ -44,7 +46,35 @@ const WeatherInfo5Days = ({ weatherData, rightArrow }) => {
               .replace(":", "")
               .replace(" ", "")
               .toLocaleLowerCase();
-            const weatherIcon = `http://openweathermap.org/img/wn/${list.weather[0].icon}@2x.png`;
+
+            const dict = {
+              "01d": "wi-day-sunny",
+              "02d": "wi-day-cloudy",
+              "03d": "wi-cloud",
+              "04d": "wi-cloudy",
+              "09d": "wi-showers",
+              "10d": "wi-day-rain-mix",
+              "11d": "wi-thunderstorm",
+              "13d": "wi-snow",
+              "50d": "wi-fog",
+              "01n": "wi-night-clear",
+              "02n": "wi-night-alt-cloudy",
+              "03n": "wi-night-alt-cloudy-high",
+              "04n": "wi-cloudy",
+              "09n": "wi-night-alt-sprinkle",
+              "10n": "wi-night-alt-showers",
+              "11n": "wi-night-alt-thunderstorm",
+              "13n": "wi-night-alt-snow",
+              "50n": "wi-night-fog",
+            };
+
+            const weatherIcon = dict[list.weather[0].icon];
+
+            const iconStyle = {
+              fontSize: "2rem",
+              color: "var(--text-color)",
+              margin: "0.5em auto 0.5em auto",
+            };
 
             return (
               <li className="day-block" key={index}>
@@ -52,7 +82,7 @@ const WeatherInfo5Days = ({ weatherData, rightArrow }) => {
                   <div className="temp-5-days">
                     <p>{temp5Days}°</p>
                   </div>
-                  <img src={weatherIcon} alt="Weather Icon" />
+                  <i class={`wi ${weatherIcon}`} style={iconStyle}></i>
                   <div>
                     <p className="date-5-days">{formattedDate}</p>
                     <p className="time-5-days">{time5Days}</p>

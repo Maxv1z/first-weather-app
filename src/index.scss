@@ -6,14 +6,9 @@
 
 body {
   font-family: "Ledger";
-  background-color: var(--background-color);
-  padding: 25px;
 }
 
 :root {
-  --background-color: #ffe142;
-  --text-color: black;
-
   --popup-animation-delay: 0s;
   --date-load-delay: 5s;
   --weather-load-delay: 5.2s;
@@ -24,9 +19,29 @@ body {
   --right-arrow-delay: 7s;
 }
 
+.light {
+  --background-color: #ffe142;
+  --text-color: #000000;
+  --svg-filter: invert(97%) sepia(52%) saturate(3089%) hue-rotate(321deg)
+    brightness(107%) contrast(105%);
+}
+
+.dark {
+  --background-color: #ff64d6;
+  --text-color: #000000;
+  --svg-filter: invert(55%) sepia(56%) saturate(1600%) hue-rotate(286deg)
+    brightness(102%) contrast(101%);
+}
+
+#app {
+  background-color: var(--background-color);
+  height: 100vh;
+  width: 100vw;
+}
+
 .search-box .search-bar {
   display: block;
-  width: 100%;
+  width: 90%;
   padding: 15px;
 
   appearance: none;
@@ -36,7 +51,7 @@ body {
 
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 0px 0px 16px 16px;
-  margin-top: -25px;
+  margin: 0 auto 0 auto;
 
   color: var(--text-color);
   font-size: 20px;

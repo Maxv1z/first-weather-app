@@ -1,6 +1,7 @@
 import { useState, useEffect, React } from "react";
-import ReactDOM from "react-dom";
+
 import "./index.scss";
+import './theme.scss'
 
 import windIcon from "./assets/wind-icon.svg";
 import dropIcon from "./assets/drop-icon.svg";
@@ -46,6 +47,14 @@ function App() {
       setShowPopup(true);
     }
   }, []);
+
+  const [theme, setTheme] = useState('default-class');
+  const [isYellow, setYellow] = useState(true);
+
+  const toggleTheme = () => {
+    setYellow(!isYellow);
+  };
+
 
   const search = (evt) => {
     if (evt.key === "Enter") {
@@ -130,57 +139,48 @@ function App() {
   var hr = new Date().getHours();
 
   return (
-    <div
-      className={
-        typeof weather.main != "undefined"
-          ? hr < 20
-            ? "app"
-            : "app-night"
-          : "app"
-      }
-    >
+    <div className={typeof weather.main !== "undefined" ? isYellow ? 'dark' : 'light' : ''} id="app">
       <div>
         {showPopup && <Popup />}
       </div>
-      <main>
-        <SearchBox
-          handleInputChange={handleInputChange}
-          query={query}
-          search={search}
-        />
-        <Greeting weather={weather} />
-        {typeof weather.main != "undefined" ? (
-          <>
-            <div className="location-box">
-              <div className="location">
-                {weather.name}, {weather.sys.country}
-              </div>
+      <SearchBox
+        handleInputChange={handleInputChange}
+        query={query}
+        search={search}
+      />
+      <Greeting weather={weather} />
+      {typeof weather.main != "undefined" ? (
+        <>
+          <div className="location-box">
+            <div className="location">
+              {weather.name}, {weather.sys.country}
             </div>
-            <DateContainer formattedDate={formattedDate} />
-            <div className="weather-box">
-              <div className="weather-container">
-                <div></div>
-                <p className="weather">
-                  {weather.weather[0].description.charAt(0).toUpperCase() +
-                    weather.weather[0].description.slice(1)}
-                </p>
-              </div>
-              <div className="temp">{Math.round(weather.main.temp)}°</div>
+          </div>
+          <DateContainer formattedDate={formattedDate} />
+          <div className="weather-box">
+            <div className="weather-container">
+              <div></div>
+              <p className="weather">
+                {weather.weather[0].description.charAt(0).toUpperCase() +
+                  weather.weather[0].description.slice(1)}
+              </p>
+            </div>
+            <div className="temp">{Math.round(weather.main.temp)}°</div>
 
-              <Description weather={weather} />
-              <WeatherInfoBox
-                weather={weather}
-                windIcon={windIcon}
-                dropIcon={dropIcon}
-                windSideIcon={windSideIcon}
-              />
-            </div>
-            <Weather5Days weatherData={weatherData} rightArrow={rightArrow} />
-          </>
-        ) : (
-          ""
-        )}
-      </main>
+            <Description weather={weather} />
+            <WeatherInfoBox
+              weather={weather}
+              windIcon={windIcon}
+              dropIcon={dropIcon}
+              windSideIcon={windSideIcon}
+            />
+          </div>
+          <Weather5Days weatherData={weatherData} rightArrow={rightArrow} />
+        </>
+      ) : (
+        ""
+      )}
+      <button onClick={toggleTheme}>Toggle Theme</button>
     </div>
   );
 }
