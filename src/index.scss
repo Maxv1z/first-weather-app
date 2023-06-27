@@ -39,28 +39,6 @@ body {
   width: 100%;
 }
 
-.search-box .search-bar {
-  display: block;
-  width: 90%;
-  padding: 15px;
-
-  appearance: none;
-  background: none;
-  border: none;
-  outline: none;
-
-  z-index: 9999;
-
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 0px 0px 16px 16px;
-  margin: 0 auto 0 auto;
-
-  color: var(--text-color);
-  font-size: 20px;
-
-  transition: 0.4s ease;
-}
-
 .theme-button {
   border-radius: 15%;
   height: 3rem;

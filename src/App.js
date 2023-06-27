@@ -1,7 +1,6 @@
 import { useState, useEffect, React } from "react";
 
 import "./index.scss";
-import "./theme.scss";
 
 import windIcon from "./assets/wind-icon.svg";
 import dropIcon from "./assets/drop-icon.svg";
