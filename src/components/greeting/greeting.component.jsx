@@ -3,7 +3,7 @@ import "./greeting.style.scss";
 const Greeting = ({ weather }) => {
   if (typeof weather.main == "undefined") {
     return (
-      <div className="greeting-container" type>
+      <div className="greeting-container">
         <div className="greeting-text">
           <p className="typed-text">
             Hello! Wanna know some forecast? <br />

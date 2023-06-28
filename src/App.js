@@ -139,7 +139,7 @@ function App() {
   return (
     <div
       className={
-        typeof weather.main !== "undefined" ? (hr > 20 ? "dark app" : "light app") : ""
+        typeof weather.main !== "undefined" ? (hr > 20 ? "dark app" : "light app") : 'dark app'
       }
     >
       <div>{showPopup && <Popup />}</div>
