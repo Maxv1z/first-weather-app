@@ -4,6 +4,23 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body > #root > div {
+  height: 100vh;
+}
+
+body {
+  margin: 0px;
+  min-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Ledger";
 }
@@ -33,10 +50,8 @@ body {
     brightness(102%) contrast(101%);
 }
 
-#app {
+.app {
   background-color: var(--background-color);
-  height: 100%;
-  width: 100%;
 }
 
 .theme-button {

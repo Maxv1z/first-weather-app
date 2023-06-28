@@ -139,9 +139,8 @@ function App() {
   return (
     <div
       className={
-        typeof weather.main !== "undefined" ? (isYellow ? "dark" : "light") : ""
+        typeof weather.main !== "undefined" ? (hr > 20 ? "dark app" : "light app") : ""
       }
-      id="app"
     >
       <div>{showPopup && <Popup />}</div>
       <SearchBox
@@ -177,7 +176,7 @@ function App() {
             />
           </div>
           <Weather5Days weatherData={weatherData} rightArrow={rightArrow} />
-          <button onClick={toggleTheme} className="theme-button">Change theme?</button>
+          {/* <button onClick={toggleTheme} className="theme-button">Change theme?</button> */}
         </>
       ) : (
         ""
