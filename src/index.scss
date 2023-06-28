@@ -137,3 +137,19 @@ body {
     opacity: 1;
   }
 }
+
+@media screen and (min-width: 740px) {
+  .weather-box {
+    margin: 0 auto 0 auto;
+    justify-content: center;
+    width: 70vw;
+
+    .temp {
+      font-size: 13em;
+    }
+
+    .weather-info-box {
+      width: 20em;
+    }
+  }
+}

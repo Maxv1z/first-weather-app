@@ -34,3 +34,9 @@
     opacity: 1;
   }
 }
+
+@media screen and (min-width: 740px) {
+  .date-container {
+    width: 30vw;
+  }
+}

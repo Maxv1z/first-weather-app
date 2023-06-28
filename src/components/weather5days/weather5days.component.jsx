@@ -26,9 +26,10 @@ const WeatherInfo5Days = ({ weatherData, rightArrow }) => {
         <h2>Hourly forecast </h2>
         <img src={rightArrow} className="right-arrow" alt="img" />
       </div>
+
       <ul className="weather-info-5-days" ref={weatherInfoRef}>
         {weatherData && weatherData.length > 0 ? (
-          weatherData.slice(0, 10).map((list, index) => {
+          weatherData.slice(0, 20).map((list, index) => {
             const temp5Days = Number(list.main.temp).toFixed(0);
             const date5Days = new Date(list.dt * 1000);
             const formattedDate = date5Days.toLocaleDateString("en-US", {

@@ -49,3 +49,14 @@
     opacity: 1;
   }
 }
+
+@media screen and (min-width: 740px) {
+  .description-container {
+    text-align: center;
+    margin: auto;
+    p {
+      width: 30em;
+      margin: 0 auto 0 auto;
+    }
+  }
+}
