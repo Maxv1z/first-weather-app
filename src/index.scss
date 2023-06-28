@@ -7,11 +7,11 @@
 html {
   height: 100%;
   margin: 0;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 body > #root > div {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
   box-sizing: border-box;
 
   font-family: "Ledger";
-  overflow: scroll;
+  overflow: auto;
 }
 
 :root {
